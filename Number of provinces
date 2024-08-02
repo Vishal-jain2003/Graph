@@ -1,0 +1,36 @@
+Number of Provinces
+class Solution {
+    public int findCircleNum(int[][] a) {
+        int n =a.length;
+        boolean[] vis = new boolean[n+1];
+        int count=0;
+        for (int i=0;i<n;i++)
+        {
+            if (!vis[i])
+            {
+                count++;
+                dfs(a,i,vis);
+            }
+        }
+        return count;
+
+        
+    }
+    void dfs(int[][] a,int i,boolean[] vis)
+    {
+        for (int j=0;j<a[i].length;j++)
+        {
+            if (!vis[j] && a[i][j]!=0)
+            {
+                vis[j]=true;
+                dfs(a,j,vis);
+            }
+        }
+       
+    }
+}
+
+
+// USING LISTS 
+
+
