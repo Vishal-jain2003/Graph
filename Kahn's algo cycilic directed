@@ -1,0 +1,51 @@
+class Solution {
+    // Function to detect cycle in a directed graph.
+    public boolean isCyclic(int V, ArrayList<ArrayList<Integer>> adj) {
+        // code here
+    // using bfs
+    // using kahn's algo 
+    // kahn's algo used when there is directed acyclic graph 
+    // if there is cycle kahn's algo false 
+  
+     int[] indegree = new int[V];
+     int[] ans = new int[V];
+     for (ArrayList<Integer>al: adj)
+     {
+         for (int w:al)
+         {
+             indegree[w]++; // no of directions coming out there 
+         }
+     }
+     
+     
+     Queue<Integer>q = new LinkedList<>();
+     for (int v=0;v<V;v++)
+     {
+         if (indegree[v]==0) q.add(v);
+     }
+     int count=0;
+     while(!q.isEmpty())
+     {
+         int val = q.remove();
+         count++;
+         for (int w:adj.get(val))  // check neighbours 
+         {
+             if (--indegree[w]==0)
+             {
+                 q.add(w);
+             }
+         }
+         
+     }
+     if (count==V)
+     {
+         return false;
+     }
+     else
+     {
+         return true;
+     }
+     
+     
+    }
+}
